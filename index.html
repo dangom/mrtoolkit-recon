@@ -1,0 +1,569 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2017-05-14 Sun 21:16 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MR Toolkit - Recon and Parallel Imaging</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="J. Marques &amp; D. Gomez" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="./css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="./css/readtheorg.css"/>
+<script src="./js/lib/jquery/jquery.min.js"></script>
+<script src="./js/lib/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="./js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2017 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body onLoad="setUp();">
+<div id="content">
+<h1 class="title">MR Toolkit - Recon and Parallel Imaging</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#tutorial-on-image-reconstruction">Image Reconstruction Tutorial</a>
+<ul>
+<li><a href="#org0a1d76a">1. Looking at the data</a></li>
+<li><a href="#org6b39475">2. 1 Undestanding FOV, resolution and k-space</a></li>
+<li><a href="#org111482c">2. 2 Understanding FOV, resolution, k-space and SNR</a></li>
+<li><a href="#org029cc30">3. How does SNR work?</a></li>
+<li><a href="#org9bfc30c">4. Exploring k-space</a></li>
+</ul>
+</li>
+<li><a href="#tutorial-on-parallel-imaging">Parallel Imaging Tutorial</a>
+<ul>
+<li><a href="#org4b7cb42">5. Acceleration factors and SNR</a></li>
+<li><a href="#org3e33817">6. Simultaneous multislice (SMS)</a></li>
+<li><a href="#orge51ab35">7. Mixing in-plane acceleration and SMS</a></li>
+</ul>
+</li>
+<li><a href="#org6870fa4">Supplementary Information</a></li>
+</ul>
+</div>
+</div>
+<div class="important">
+<p>
+Questions to be answered in <b>groups of three</b> with the use of any material you might want to use.
+<b>You have 30 mins</b> to submit the answers, as a team you have to agree on the response given.
+</p>
+
+</div>
+
+
+<div id="outline-container-org33ab6e3" class="outline-2">
+<h2 id="tutorial-on-image-reconstruction"><a id="org33ab6e3"></a>Image Reconstruction Tutorial</h2>
+<div class="outline-text-2" id="text-tutorial-on-image-reconstruction">
+</div>
+
+
+<div id="outline-container-org0a1d76a" class="outline-3">
+<h3 id="org0a1d76a">1. Looking at the data</h3>
+<div class="outline-text-3" id="text-org0a1d76a">
+
+<div class="figure">
+<p><img src="./media/image1.png" alt="image1.png" />
+</p>
+</div>
+
+<p>
+<b>In the rightmost image above, how is the brain oriented?</b>
+</p>
+
+<ul class="org-ul">
+<li class="off"><input type='checkbox' /> <b>A.</b> The image shows a  <i>transverse/axial</i> slice of a brain</li>
+<li class="off"><input type='checkbox' /> <b>B.</b>  The image shows a  <i>coronal</i> slice of a brain</li>
+<li class="off"><input type='checkbox' /> <b>C.</b> The image shows a  <i>sagittal</i> slice of a brain</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6b39475" class="outline-3">
+<h3 id="org6b39475">2. 1 Undestanding FOV, resolution and k-space</h3>
+<div class="outline-text-3" id="text-org6b39475">
+<div class="hint">
+<p>
+"The uniform spacing between data points in k-space, \(\delta k\), is \(\frac{1}{L}\), where \(L\) is the spatial interval over which the image repeats itself in image space. The interval \(L\) is called the Field-Of-View (FOV)." - From MRI Principles, Haacke.
+</p>
+
+</div>
+
+
+<div class="figure">
+<p><img src="./media/image2.png" alt="image2.png" />
+</p>
+</div>
+
+<p>
+Look at the  <i>Image with reduced FOV</i> and the <i>Image by cropping edges</i>. Can you explain why the <i>Image with reduced FOV</i> looks noisier? Think about it for a minute before answering the question below.
+</p>
+
+<p>
+<b>The reduction of the FOV can be done&#x2026;</b>
+</p>
+
+<ul class="org-ul">
+<li class="off"><input type='checkbox' /> <b>A.</b> By subsampling the k-space. In the example image, a combined reduction factor of 24 is possible.</li>
+<li class="off"><input type='checkbox' /> <b>B.</b> By sampling  a central region of  k-space. A total factor of 4 could be reduced without sacrificing  on the resolution.</li>
+<li class="off"><input type='checkbox' /> <b>C.</b> Either in k-space or directly in the image space by simply cropping the image. The results are  equivalent. In the example image a reduction factor of 24 could be achieved.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org111482c" class="outline-3">
+<h3 id="org111482c">2. 2 Understanding FOV, resolution, k-space and SNR</h3>
+<div class="outline-text-3" id="text-org111482c">
+<p>
+To increase the  SNR available in the  dataset with reduced FOV, it is  better to have a lower resolution than currently  prescribed. The original resolution was 0.85mm. Let us make it 1.7mm on both x and y.
+</p>
+
+
+<div class="figure">
+<p><img src="./media/image3.png" alt="image3.png" />
+</p>
+</div>
+
+<p>
+<b>How does the new low resolution image look like?</b>
+</p>
+
+<ul class="org-ul">
+<li class="off"><input type='checkbox' /> <b>A.</b> The image looks just as noisy as before.</li>
+<li class="off"><input type='checkbox' /> <b>B.</b> The image is less noisy than before but some details are now unclear.</li>
+<li class="off"><input type='checkbox' /> <b>C.</b> Because the image already had a tight FOV it wasn't possible to increase the SNR.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org029cc30" class="outline-3">
+<h3 id="org029cc30">3. How does SNR work?</h3>
+<div class="outline-text-3" id="text-org029cc30">
+<p>
+<b>Formulate the dependence of SNR  as a function of: Number of phase encoding steps,\( N_{PE}\) and  voxel volume, \(V\);</b>
+</p>
+
+<ul class="org-ul">
+<li class="off"><input type='checkbox' /> <b>A.</b> \(\text{SNR}_{} = {Signal(TR,TE,\alpha) \bullet V \bullet N}_{\text{PE}}\)</li>
+<li class="off"><input type='checkbox' /> <b>B.</b> \(\text{SNR}_{} = Signal(TR,TE,\alpha) \bullet \sqrt{V \bullet N_{\text{PE}}}\)</li>
+<li class="off"><input type='checkbox' /> <b>C.</b> \(\text{SNR}_{} = Signal(TR,TE,\alpha) \bullet V\sqrt{N_{\text{PE}}}\)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9bfc30c" class="outline-3">
+<h3 id="org9bfc30c">4. Exploring k-space</h3>
+<div class="outline-text-3" id="text-org9bfc30c">
+<p>
+<i>How is information distributed in k-space?</i> Consider the k-space representation of the image of reduced FOV and resolution of the previous exercise. 
+<b>What information do you think was present on the k-space coordinate (kx=ky=10)?</b>
+</p>
+
+
+<div class="figure">
+<p><img src="./media/kspaceinfo.png" alt="kspaceinfo.png" />
+</p>
+</div>
+
+<ul class="org-ul">
+<li class="off"><input type='checkbox' /> <b>A</b></li>
+<li class="off"><input type='checkbox' /> <b>B</b></li>
+<li class="off"><input type='checkbox' /> <b>C</b></li>
+<li class="off"><input type='checkbox' /> <b>D</b></li>
+<li class="off"><input type='checkbox' /> <b>E</b></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org27a13b5" class="outline-2">
+<h2 id="tutorial-on-parallel-imaging"><a id="org27a13b5"></a>Parallel Imaging Tutorial</h2>
+<div class="outline-text-2" id="text-tutorial-on-parallel-imaging">
+</div>
+
+<div id="outline-container-org4b7cb42" class="outline-3">
+<h3 id="org4b7cb42">5. Acceleration factors and SNR</h3>
+<div class="outline-text-3" id="text-org4b7cb42">
+<p>
+<a href="http://mriquestions.com/what-is-pi.html">Parallel imaging</a> can be used to accelerate the acquisition of single slice. In the case of structural imaging it shortens the acquisition time. In case of echo planar imaging, EPI, it is used to reduce the echo train length and distortions.
+The images will suffer  an SNR penalty because of the reduced number of phase encoding steps measured (see the answer to question 3), and also  a so-called <i>G-factor penalty</i> because of noise amplification associated with disentangling overlapping pixels. The SNR of an accelerated acquisition with an acceleration factor of AF can thus be written as:
+</p>
+
+<p>
+\(\text{SN}R_{\text{af}} = \frac{\text{SNR}}{\sqrt{\text{af}} \times g_{\text{factor}}}\)
+</p>
+
+<p>
+Look at the following examples:
+</p>
+
+
+<div class="figure">
+<p><img src="./media/recon.png" alt="recon.png" />
+</p>
+</div>
+
+
+<p>
+<b>Which acceleration factor was used to acquire the image below?</b>
+</p>
+
+
+<div class="figure">
+<p><img src="./media/image13.png" alt="image13.png" />
+</p>
+</div>
+
+
+<ul class="org-ul">
+<li class="off"><input type='checkbox' /> <b>A.</b> Acceleration factor 2</li>
+<li class="off"><input type='checkbox' /> <b>B.</b> Acceleration factor 3</li>
+<li class="off"><input type='checkbox' /> <b>C.</b> Acceleration factor 4</li>
+<li class="off"><input type='checkbox' /> <b>D.</b> Acceleration factor 5</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3e33817" class="outline-3">
+<h3 id="org3e33817">6. Simultaneous multislice (SMS)</h3>
+<div class="outline-text-3" id="text-org3e33817">
+<p>
+Consider the case where three slices were simultaneously excited. The acquisition was done with six receiver coils for which  the following sensitivity maps had been acquired:
+</p>
+
+
+<div class="figure">
+<p><img src="./media/image14.png" alt="image14.png" />
+</p>
+</div>
+
+<p>
+When encoding the acquisition, three different CAIPI factors were applied:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">1 - no FOV shift;</th>
+<th scope="col" class="org-left">2 - 0.5xFOV shift;</th>
+<th scope="col" class="org-left">3 - 0.33xFOV shift</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left"><img src="./media/no_fov.png" alt="no_fov.png" /></td>
+<td class="org-left"><img src="./media/half_fov.png" alt="half_fov.png" /></td>
+<td class="org-left"><img src="./media/third_fov.png" alt="third_fov.png" /></td>
+</tr>
+</tbody>
+</table>
+
+<p>
+<b>Which of the data sets would be better reconstructed using standard parallel imaging?</b>
+</p>
+
+<ul class="org-ul">
+<li class="off"><input type='checkbox' /> <b>A.</b> The three data sets can be equally well reconstructed because the  same information is present in all of them.</li>
+<li class="off"><input type='checkbox' /> <b>B.</b> Because the six coil sensitivities used don't have much variations across the slice direction, the reconstruction will fail independent of shifts.</li>
+<li class="off"><input type='checkbox' /> <b>C.</b> The reconstruction for the no FOV shift will fail, and the remaining ones will be better.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge51ab35" class="outline-3">
+<h3 id="orge51ab35">7. Mixing in-plane acceleration and SMS</h3>
+<div class="outline-text-3" id="text-orge51ab35">
+<p>
+<b>The in-plane acceleration (along the phase encoding direction) achievable without significant g-factor penalty is independent of  the usage of  simultaneous multi-slice excitation.</b>
+</p>
+
+<ul class="org-ul">
+<li class="off"><input type='checkbox' /> <b>A.</b> True</li>
+<li class="off"><input type='checkbox' /> <b>B.</b> False</li>
+</ul>
+
+<hr />
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6870fa4" class="outline-2">
+<h2 id="org6870fa4">Supplementary Information</h2>
+<div class="outline-text-2" id="text-org6870fa4">
+<div class="note">
+<p>
+The following information only concerns those attending the Toolkit. 
+</p>
+
+</div>
+
+<p>
+After the first attempt you can find some MATLAB scripts to help you interact with this tutorial. They can be found under:
+<code>H:\common\temporary\4Toolkit\TutorialOnImageEncodingAndReconstruction</code>
+</p>
+
+<ol class="org-ol">
+<li>Copy the folder to your desktop.</li>
+<li>Open MATLAB, and the script Macro2.m</li>
+<li>Make sure your current directory is  where the script Macro2.m is located.</li>
+</ol>
+
+<p>
+The code is organized into cells. You can run the code of each cell by simply pressing ctrl+enter. You can change parameters and rerun the code following the instructions in the script.
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: J. Marques &amp; D. Gomez</p>
+<p class="date">Created: 2017-05-14 Sun 21:16</p>
+<p class="validation"></p>
+</div>
+</body>
+</html>

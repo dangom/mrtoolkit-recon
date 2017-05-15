@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2017-05-14 Sun 21:16 -->
+<!-- 2017-05-15 Mon 15:12 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>MR Toolkit - Recon and Parallel Imaging</title>
@@ -262,21 +262,21 @@ for the JavaScript code in this tag.
 <ul>
 <li><a href="#tutorial-on-image-reconstruction">Image Reconstruction Tutorial</a>
 <ul>
-<li><a href="#org0a1d76a">1. Looking at the data</a></li>
-<li><a href="#org6b39475">2. 1 Undestanding FOV, resolution and k-space</a></li>
-<li><a href="#org111482c">2. 2 Understanding FOV, resolution, k-space and SNR</a></li>
-<li><a href="#org029cc30">3. How does SNR work?</a></li>
-<li><a href="#org9bfc30c">4. Exploring k-space</a></li>
+<li><a href="#org45db62e">1. Looking at the data</a></li>
+<li><a href="#org252c0d2">2. 1 Undestanding FOV, resolution and k-space</a></li>
+<li><a href="#org8c20909">2. 2 Understanding FOV, resolution, k-space and SNR</a></li>
+<li><a href="#orgde03c3d">3. How does SNR work?</a></li>
+<li><a href="#org7d7c8d1">4. Exploring k-space</a></li>
 </ul>
 </li>
 <li><a href="#tutorial-on-parallel-imaging">Parallel Imaging Tutorial</a>
 <ul>
-<li><a href="#org4b7cb42">5. Acceleration factors and SNR</a></li>
-<li><a href="#org3e33817">6. Simultaneous multislice (SMS)</a></li>
-<li><a href="#orge51ab35">7. Mixing in-plane acceleration and SMS</a></li>
+<li><a href="#orgafe2310">5. Acceleration factors and SNR</a></li>
+<li><a href="#org15cce02">6. Simultaneous multislice (SMS)</a></li>
+<li><a href="#orgcead37d">7. Mixing in-plane acceleration and SMS</a></li>
 </ul>
 </li>
-<li><a href="#org6870fa4">Supplementary Information</a></li>
+<li><a href="#org46e0062">Supplementary Information</a></li>
 </ul>
 </div>
 </div>
@@ -289,15 +289,15 @@ Questions to be answered in <b>groups of three</b> with the use of any material 
 </div>
 
 
-<div id="outline-container-org33ab6e3" class="outline-2">
-<h2 id="tutorial-on-image-reconstruction"><a id="org33ab6e3"></a>Image Reconstruction Tutorial</h2>
+<div id="outline-container-orga36ce38" class="outline-2">
+<h2 id="tutorial-on-image-reconstruction"><a id="orga36ce38"></a>Image Reconstruction Tutorial</h2>
 <div class="outline-text-2" id="text-tutorial-on-image-reconstruction">
 </div>
 
 
-<div id="outline-container-org0a1d76a" class="outline-3">
-<h3 id="org0a1d76a">1. Looking at the data</h3>
-<div class="outline-text-3" id="text-org0a1d76a">
+<div id="outline-container-org45db62e" class="outline-3">
+<h3 id="org45db62e">1. Looking at the data</h3>
+<div class="outline-text-3" id="text-org45db62e">
 
 <div class="figure">
 <p><img src="./media/image1.png" alt="image1.png" />
@@ -309,16 +309,16 @@ Questions to be answered in <b>groups of three</b> with the use of any material 
 </p>
 
 <ul class="org-ul">
-<li class="off"><input type='checkbox' /> <b>A.</b> The image shows a  <i>transverse/axial</i> slice of a brain</li>
-<li class="off"><input type='checkbox' /> <b>B.</b>  The image shows a  <i>coronal</i> slice of a brain</li>
-<li class="off"><input type='checkbox' /> <b>C.</b> The image shows a  <i>sagittal</i> slice of a brain</li>
+<li class="off"><input type='checkbox' /> <b>A.</b> The image shows a  <i>transverse/axial</i> slice of a brain.</li>
+<li class="off"><input type='checkbox' /> <b>B.</b>  The image shows a  <i>coronal</i> slice of a brain.</li>
+<li class="off"><input type='checkbox' /> <b>C.</b> The image shows a  <i>sagittal</i> slice of a brain.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org6b39475" class="outline-3">
-<h3 id="org6b39475">2. 1 Undestanding FOV, resolution and k-space</h3>
-<div class="outline-text-3" id="text-org6b39475">
+<div id="outline-container-org252c0d2" class="outline-3">
+<h3 id="org252c0d2">2. 1 Undestanding FOV, resolution and k-space</h3>
+<div class="outline-text-3" id="text-org252c0d2">
 <div class="hint">
 <p>
 "The uniform spacing between data points in k-space, \(\delta k\), is \(\frac{1}{L}\), where \(L\) is the spatial interval over which the image repeats itself in image space. The interval \(L\) is called the Field-Of-View (FOV)." - From MRI Principles, Haacke.
@@ -348,9 +348,9 @@ Look at the  <i>Image with reduced FOV</i> and the <i>Image by cropping edges</i
 </div>
 </div>
 
-<div id="outline-container-org111482c" class="outline-3">
-<h3 id="org111482c">2. 2 Understanding FOV, resolution, k-space and SNR</h3>
-<div class="outline-text-3" id="text-org111482c">
+<div id="outline-container-org8c20909" class="outline-3">
+<h3 id="org8c20909">2. 2 Understanding FOV, resolution, k-space and SNR</h3>
+<div class="outline-text-3" id="text-org8c20909">
 <p>
 To increase the  SNR available in the  dataset with reduced FOV, it is  better to have a lower resolution than currently  prescribed. The original resolution was 0.85mm. Let us make it 1.7mm on both x and y.
 </p>
@@ -373,9 +373,9 @@ To increase the  SNR available in the  dataset with reduced FOV, it is  better t
 </div>
 </div>
 
-<div id="outline-container-org029cc30" class="outline-3">
-<h3 id="org029cc30">3. How does SNR work?</h3>
-<div class="outline-text-3" id="text-org029cc30">
+<div id="outline-container-orgde03c3d" class="outline-3">
+<h3 id="orgde03c3d">3. How does SNR work?</h3>
+<div class="outline-text-3" id="text-orgde03c3d">
 <p>
 <b>Formulate the dependence of SNR  as a function of: Number of phase encoding steps,\( N_{PE}\) and  voxel volume, \(V\);</b>
 </p>
@@ -388,9 +388,9 @@ To increase the  SNR available in the  dataset with reduced FOV, it is  better t
 </div>
 </div>
 
-<div id="outline-container-org9bfc30c" class="outline-3">
-<h3 id="org9bfc30c">4. Exploring k-space</h3>
-<div class="outline-text-3" id="text-org9bfc30c">
+<div id="outline-container-org7d7c8d1" class="outline-3">
+<h3 id="org7d7c8d1">4. Exploring k-space</h3>
+<div class="outline-text-3" id="text-org7d7c8d1">
 <p>
 <i>How is information distributed in k-space?</i> Consider the k-space representation of the image of reduced FOV and resolution of the previous exercise. 
 <b>What information do you think was present on the k-space coordinate (kx=ky=10)?</b>
@@ -413,14 +413,14 @@ To increase the  SNR available in the  dataset with reduced FOV, it is  better t
 </div>
 </div>
 
-<div id="outline-container-org27a13b5" class="outline-2">
-<h2 id="tutorial-on-parallel-imaging"><a id="org27a13b5"></a>Parallel Imaging Tutorial</h2>
+<div id="outline-container-org11ace03" class="outline-2">
+<h2 id="tutorial-on-parallel-imaging"><a id="org11ace03"></a>Parallel Imaging Tutorial</h2>
 <div class="outline-text-2" id="text-tutorial-on-parallel-imaging">
 </div>
 
-<div id="outline-container-org4b7cb42" class="outline-3">
-<h3 id="org4b7cb42">5. Acceleration factors and SNR</h3>
-<div class="outline-text-3" id="text-org4b7cb42">
+<div id="outline-container-orgafe2310" class="outline-3">
+<h3 id="orgafe2310">5. Acceleration factors and SNR</h3>
+<div class="outline-text-3" id="text-orgafe2310">
 <p>
 <a href="http://mriquestions.com/what-is-pi.html">Parallel imaging</a> can be used to accelerate the acquisition of single slice. In the case of structural imaging it shortens the acquisition time. In case of echo planar imaging, EPI, it is used to reduce the echo train length and distortions.
 The images will suffer  an SNR penalty because of the reduced number of phase encoding steps measured (see the answer to question 3), and also  a so-called <i>G-factor penalty</i> because of noise amplification associated with disentangling overlapping pixels. The SNR of an accelerated acquisition with an acceleration factor of AF can thus be written as:
@@ -453,17 +453,17 @@ Look at the following examples:
 
 
 <ul class="org-ul">
-<li class="off"><input type='checkbox' /> <b>A.</b> Acceleration factor 2</li>
-<li class="off"><input type='checkbox' /> <b>B.</b> Acceleration factor 3</li>
-<li class="off"><input type='checkbox' /> <b>C.</b> Acceleration factor 4</li>
-<li class="off"><input type='checkbox' /> <b>D.</b> Acceleration factor 5</li>
+<li class="off"><input type='checkbox' /> <b>A.</b> Acceleration factor 2.</li>
+<li class="off"><input type='checkbox' /> <b>B.</b> Acceleration factor 3.</li>
+<li class="off"><input type='checkbox' /> <b>C.</b> Acceleration factor 4.</li>
+<li class="off"><input type='checkbox' /> <b>D.</b> Acceleration factor 5.</li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org3e33817" class="outline-3">
-<h3 id="org3e33817">6. Simultaneous multislice (SMS)</h3>
-<div class="outline-text-3" id="text-org3e33817">
+<div id="outline-container-org15cce02" class="outline-3">
+<h3 id="org15cce02">6. Simultaneous multislice (SMS)</h3>
+<div class="outline-text-3" id="text-org15cce02">
 <p>
 Consider the case where three slices were simultaneously excited. The acquisition was done with six receiver coils for which  the following sensitivity maps had been acquired:
 </p>
@@ -516,9 +516,9 @@ When encoding the acquisition, three different CAIPI factors were applied:
 </div>
 </div>
 
-<div id="outline-container-orge51ab35" class="outline-3">
-<h3 id="orge51ab35">7. Mixing in-plane acceleration and SMS</h3>
-<div class="outline-text-3" id="text-orge51ab35">
+<div id="outline-container-orgcead37d" class="outline-3">
+<h3 id="orgcead37d">7. Mixing in-plane acceleration and SMS</h3>
+<div class="outline-text-3" id="text-orgcead37d">
 <p>
 <b>The in-plane acceleration (along the phase encoding direction) achievable without significant g-factor penalty is independent of  the usage of  simultaneous multi-slice excitation.</b>
 </p>
@@ -533,9 +533,9 @@ When encoding the acquisition, three different CAIPI factors were applied:
 </div>
 </div>
 
-<div id="outline-container-org6870fa4" class="outline-2">
-<h2 id="org6870fa4">Supplementary Information</h2>
-<div class="outline-text-2" id="text-org6870fa4">
+<div id="outline-container-org46e0062" class="outline-2">
+<h2 id="org46e0062">Supplementary Information</h2>
+<div class="outline-text-2" id="text-org46e0062">
 <div class="note">
 <p>
 The following information only concerns those attending the Toolkit. 
@@ -562,7 +562,7 @@ The code is organized into cells. You can run the code of each cell by simply pr
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: J. Marques &amp; D. Gomez</p>
-<p class="date">Created: 2017-05-14 Sun 21:16</p>
+<p class="date">Created: 2017-05-15 Mon 15:12</p>
 <p class="validation"></p>
 </div>
 </body>
